@@ -1,6 +1,10 @@
 import { app } from "./app"
 import { env } from "./env"
+import { AppDataSource } from './database/data-source'
 
-app.listen(env.PORT, () => {
-    console.log(`HTTP server running in port ${env.PORT}!`)
+
+AppDataSource.initialize().then(() => {
+	app.listen(env.PORT, () => {
+        console.log(`HTTP server running in port ${env.PORT}!`)
+    })
 })
