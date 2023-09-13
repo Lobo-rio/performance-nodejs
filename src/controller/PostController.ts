@@ -1,7 +1,5 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express'
 
 export class PostController {
-    async handle(request: Request, response: Response) {
-        
-    }
+  async handle(request: Request, response: Response) {}
 }

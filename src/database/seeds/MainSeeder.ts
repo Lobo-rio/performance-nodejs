@@ -4,11 +4,11 @@ import { UserSeeder } from './UserSeeder'
 import { PostSeeder } from './PostSeeder'
 
 export class MainSeeder implements Seeder {
-	async run(
-		dataSource: DataSource,
-		factoryManager: SeederFactoryManager
-	): Promise<void> {
-		await runSeeder(dataSource, UserSeeder)
-		await runSeeder(dataSource, PostSeeder)
-	}
+  async run(
+    dataSource: DataSource,
+    factoryManager: SeederFactoryManager,
+  ): Promise<void> {
+    await runSeeder(dataSource, UserSeeder)
+    await runSeeder(dataSource, PostSeeder)
+  }
 }

@@ -1,7 +1,5 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express'
 
 export class UserController {
-    async handle(request: Request, response: Response) {
-        
-    }
+  async handle(request: Request, response: Response) {}
 }
