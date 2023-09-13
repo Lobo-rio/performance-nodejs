@@ -1,7 +1,9 @@
 import { DataSource } from 'typeorm'
 import { Seeder, SeederFactoryManager } from 'typeorm-extension'
-import { User } from '../../entities/UserEntity'
+import { faker } from '@faker-js/faker'
 import bcrypt from 'bcrypt'
+
+import { User } from '../../entities/UserEntity'
 
 export class UserSeeder implements Seeder {
   async run(
@@ -10,17 +12,24 @@ export class UserSeeder implements Seeder {
   ): Promise<void> {
     const userRepository = dataSource.getRepository(User)
 
-    const userData = {
-      name: 'Guido Cerqueira',
-      email: 'guido@email.com',
-      password: await bcrypt.hash('teste', 10),
+    for (let i = 1; i < 100000; i++) {
+      const userData = await this.createDataUser()
+  
+      const userExists = await userRepository.findOneBy({ email: userData.email })
+  
+      if (!userExists) {
+        const newUser = userRepository.create(userData)
+        await userRepository.save(newUser)
+      }
     }
-
-    const userExists = await userRepository.findOneBy({ email: userData.email })
-
-    if (!userExists) {
-      const newUser = userRepository.create(userData)
-      await userRepository.save(newUser)
+  }
+  private async createDataUser() {
+    return {
+      name: faker.person.fullName(),
+      email: faker.internet.email(), 
+      password: await bcrypt.hash(faker.person.zodiacSign(), 8),
+      isActive: true,
+      isAdmin: true,
     }
   }
 }
