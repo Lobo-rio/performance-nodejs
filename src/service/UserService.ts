@@ -1,5 +1,5 @@
 import { User } from '../entities/UserEntity'
-
+import { userRepository } from '../repositories/UserRepository'
 interface UserRequest {
   name: string
   page: number
@@ -12,8 +12,14 @@ interface UserResponse {
 
 export class UserService {
   async handle(data: UserRequest): Promise<UserResponse> {
+    const { name, page, perPage } = data
+    const users = await userRepository.find({
+      where: { name },
+      skip: ((page - 1) * perPage),
+      take: perPage,
+    })
     return {
-      users: [],
+      users,
     }
   }
 }

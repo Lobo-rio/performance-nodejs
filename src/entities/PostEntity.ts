@@ -9,7 +9,7 @@ import {
 
 import { v4 as uuid } from 'uuid'
 
-@Entity({ name: 'pots' })
+@Entity({ name: 'posts' })
 export class Post {
   @PrimaryGeneratedColumn('uuid')
   id: string

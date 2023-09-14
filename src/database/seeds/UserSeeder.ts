@@ -12,7 +12,7 @@ export class UserSeeder implements Seeder {
   ): Promise<void> {
     const userRepository = dataSource.getRepository(User)
 
-    for (let i = 1; i < 100000; i++) {
+    for (let i = 1; i < 38; i++) {
       const userData = await this.createDataUser()
   
       const userExists = await userRepository.findOneBy({ email: userData.email })

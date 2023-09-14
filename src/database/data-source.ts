@@ -19,7 +19,7 @@ const options: DataSourceOptions & SeederOptions = {
   database: env.POSTGRES_DATABASE,
   entities: [ User, Post],
   migrations: [ CreateTableUsers1694626207146, CreateTableUsers1694626312083 ],
-  seeds: [MainSeeder],
+  seeds: [ MainSeeder ]
 }
 
 export const AppDataSource = new DataSource(options)
