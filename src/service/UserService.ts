@@ -1,20 +1,16 @@
+import { Like } from 'typeorm'
+
 import { User } from '../entities/UserEntity'
 import { userRepository } from '../repositories/UserRepository'
-interface UserRequest {
-  name: string
-  page: number
-  perPage: number
-}
 
 interface UserResponse {
   users: User[]
 }
 
 export class UserService {
-  async handle(data: UserRequest): Promise<UserResponse> {
-    const { name, page, perPage } = data
+  async handle(name: string, page: number, perPage: number): Promise<UserResponse> {
     const users = await userRepository.find({
-      where: { name },
+      where: { name: Like(`%${name}%`) },
       skip: ((page - 1) * perPage),
       take: perPage,
     })
@@ -23,3 +19,4 @@ export class UserService {
     }
   }
 }
+
