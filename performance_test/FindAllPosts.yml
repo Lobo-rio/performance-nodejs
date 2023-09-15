@@ -9,7 +9,7 @@ config:
     perPage: 50
 
 scenarios:
-  - name: "Find posts by name"
+  - name: "Find posts by title"
     flow:
       - get:
           url: "/posts/Credit/1/50"

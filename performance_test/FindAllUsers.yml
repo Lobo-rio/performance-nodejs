@@ -9,9 +9,9 @@ config:
     perPage: 50
 
 scenarios:
-  - name: "Find contacts by name"
+  - name: "Find users by name"
     flow:
       - get:
-          url: "/posts/name/{{name}}?page={{page}}&perPage={{perPage}}"
+          url: "/users/Flora/1/10"
           expect:
             - statusCode: 200
